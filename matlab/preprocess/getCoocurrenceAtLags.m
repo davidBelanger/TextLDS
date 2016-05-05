@@ -28,9 +28,7 @@ for fi = 1:len
     for lagP1 = 1:(numLags + 1)
         lag = lagP1 - 1
      dataAtLags{lagP1} = dataAtLags{lagP1} + sparse(data(1:end-lag),data(1+lag:end),ones(1,ld-lag),V,V);
-     
-        %  dataAtLags{lagP1} = dataAtLags{lagP1} + sparse(data(1+lag:end),data(1:end-lag),ones(1,ld-lag),V,V);
-         end       
+        end       
 end
 
 disp('saving');
