@@ -19,10 +19,8 @@ addOptional(p,'hidsize',200,@isnumeric);
 addOptional(p,'expt','lds',@ischar);
 addOptional(p,'ssidTransformPower',0,@isnumeric);
 addOptional(p,'randSeed',0,@isnumeric);
-addOptional(p,'doPOS',true,@islogical);
 addOptional(p,'randomInit',false,@islogical);
 addOptional(p,'saveParams',true,@islogical);
-addOptional(p,'writeRNNFiles',false,@islogical);
 addOptional(p,'emLoops',20,@isnumeric);
 addOptional(p,'rnnParamDir','',@ischar);
 addOptional(p,'workingDir','',@ischar);
@@ -141,23 +139,6 @@ for k = 1:numEMLoops
     oo = fopen(sprintf('../%s/nn-%d-ll.txt',workingDir,k),'w');
     fprintf(oo,'%f ',LLhist(:));
     fclose(oo);
-end
-
-
-if(p.Results.writeRNNFiles)
-    params.T = T;
-   if(numEMLoops == 0)
-      params.Ey_x_0 = zeros(size(params.C));
-      params.Ex_x_0 = eye(size(params.A,1));
-      
-   end
-   params = word_GetSteadyStateParams(params,ape);
-   params = word_GetParamsForFiltering(params,ape);
-   fprintf('writing %s\n',[outFile '-' 'final']);
-    save([outFile '-' 'final'],'params','LLhist','totalIters','-v7.3');       
-
-   outBase =  [p.Results.rnnParamDir '/rnn-' p.Results.expt];
-   WriteRNNFiles([dataDir '/class_vocabIndices'],outBase,params,ape); 
 end
 
 
