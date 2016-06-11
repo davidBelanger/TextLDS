@@ -1,2 +1,2 @@
 # TextLDS
-Code for ICML 2015 "A Linear Dynamical System Model For Text," David Belanger and Sham Kakade 
+Code for David Belanger and Sham Kakade "A Linear Dynamical System Model For Text." ICML 2015. 
